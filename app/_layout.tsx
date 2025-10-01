@@ -56,6 +56,15 @@ export default function Layout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="scan"
+        options={{
+          title: "Scan",
+          tabBarIcon: ({ color, size }) => (
+          <Ionicons name="camera-outline" size={size} color={color} />
+        ),
+        }}
+      />
     </Tabs>
   );
 }
