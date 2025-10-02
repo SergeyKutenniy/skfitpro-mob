@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 
+
 export default function Layout() {
   return (
     <Tabs
@@ -30,23 +31,32 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="index"
+  name="coach"
+  options={{
+    title: "Coach",
+    tabBarIcon: ({ color, size }) => (
+      <Ionicons name="barbell" color={color} size={size} />
+    ),
+  }}
+/>
+
+<Tabs.Screen
+  name="index"
+  options={{
+    href: null, // 🔹 скрываем из нижнего меню
+  }}
+/>
+
+<Tabs.Screen
+        name="scan"
         options={{
-          title: "Coach",
+          title: "Scan",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="barbell" color={color} size={size} />
-          ),
+          <Ionicons name="camera-outline" size={size} color={color} />
+        ),
         }}
       />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" color={color} size={size} />
-          ),
-        }}
-      />
+      
       <Tabs.Screen
         name="notifications"
         options={{
@@ -57,12 +67,12 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="scan"
+        name="profile"
         options={{
-          title: "Scan",
+          title: "Profile",
           tabBarIcon: ({ color, size }) => (
-          <Ionicons name="camera-outline" size={size} color={color} />
-        ),
+            <Ionicons name="person" color={color} size={size} />
+          ),
         }}
       />
     </Tabs>
