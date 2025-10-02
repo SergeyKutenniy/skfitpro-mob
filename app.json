@@ -4,10 +4,16 @@
     "slug": "skfitpro-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/a35290c7-401c-42d2-81ba-82cf81902713.png-removebg-preview.png",
+    "icon": "./assets/images/favicon.png",
     "scheme": "skfitpromobile",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/favicon.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#32a852"
+    },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.kutenniysergiy.skfitpro",
       "infoPlist": {

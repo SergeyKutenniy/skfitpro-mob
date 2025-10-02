@@ -1,17 +1,18 @@
-import React from "react";
+import React from 'react';
 import {
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { SafeAreaView } from "react-native-safe-area-context";
+  FlatList,
+} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   const user = {
-    name: "Sergey",
+    name: 'Sergey',
     weeklyProgress: 0.6,
     workoutsCompleted: 4,
     caloriesBurned: 1200,
@@ -19,10 +20,10 @@ export default function HomeScreen() {
   };
 
   const quickWorkouts = [
-    { title: "Кардио 20 мин" },
-    { title: "Силовая тренировка" },
-    { title: "Йога для спины" },
-    { title: "HIIT 15 мин" },
+    { title: 'Кардио 20 мин' },
+    { title: 'Силовая тренировка' },
+    { title: 'Йога для спины' },
+    { title: 'HIIT 15 мин' },
   ];
 
   return (
@@ -54,7 +55,7 @@ export default function HomeScreen() {
         {/* Кнопка начать тренировку */}
         <TouchableOpacity>
           <LinearGradient
-            colors={["#4caf50", "#81c784"]}
+            colors={['#4caf50', '#81c784']}
             style={styles.startButton}
           >
             <Text style={styles.startButtonText}>Начать тренировку</Text>
@@ -63,13 +64,18 @@ export default function HomeScreen() {
 
         {/* Быстрые тренировки */}
         <Text style={styles.sectionTitle}>Быстрые тренировки</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {quickWorkouts.map((workout, index) => (
-            <TouchableOpacity key={index} style={styles.workoutCard}>
-              <Text style={styles.workoutTitle}>{workout.title}</Text>
+        <FlatList
+          data={quickWorkouts}
+          numColumns={2} // ✅ 2 карточки в ряд
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={[styles.workoutCard, { flex: 1, margin: 6 }]}
+            >
+              <Text style={styles.workoutTitle}>{item.title}</Text>
             </TouchableOpacity>
-          ))}
-        </ScrollView>
+          )}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -78,57 +84,57 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: "#111",
+    backgroundColor: '#111',
     paddingTop: 10, // ✅ Отступ сверху от часов/батареи
   },
   container: { flex: 1, paddingHorizontal: 16 },
   greeting: {
     fontSize: 26,
-    fontWeight: "bold",
-    color: "#fff",
+    fontWeight: 'bold',
+    color: '#fff',
     marginBottom: 20,
   },
   statsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 24,
   },
   statCard: {
     flex: 1,
-    backgroundColor: "#1e1e1e",
+    backgroundColor: '#1e1e1e',
     marginHorizontal: 6,
     padding: 16,
     borderRadius: 12,
-    alignItems: "center",
+    alignItems: 'center',
   },
   statValue: {
     fontSize: 22,
-    fontWeight: "bold",
-    color: "#4caf50",
+    fontWeight: 'bold',
+    color: '#4caf50',
   },
-  statLabel: { fontSize: 14, color: "#aaa", marginTop: 4 },
+  statLabel: { fontSize: 14, color: '#aaa', marginTop: 4 },
   startButton: {
     paddingVertical: 14,
     borderRadius: 12,
-    alignItems: "center",
+    alignItems: 'center',
     marginBottom: 30,
   },
   startButtonText: {
-    color: "#fff",
+    color: '#fff',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: "600",
-    color: "#fff",
+    fontWeight: '600',
+    color: '#fff',
     marginBottom: 12,
   },
   workoutCard: {
-    backgroundColor: "#1e1e1e",
+    backgroundColor: '#1e1e1e',
     padding: 16,
     borderRadius: 10,
     marginRight: 12,
   },
-  workoutTitle: { color: "#fff", fontSize: 16 },
+  workoutTitle: { color: '#fff', fontSize: 16 },
 });
